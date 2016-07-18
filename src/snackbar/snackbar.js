@@ -7,6 +7,9 @@
  * https://github.com/polonel/Snackbar/blob/master/LICENSE
  */
 
+// stylesheets
+require('../assets/styles/snackbar.sass');
+
 import {extend} from './extend';
 import {SNACKBAR, INNER_ELEMENT} from './defaults';
 
