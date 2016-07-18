@@ -27,6 +27,7 @@
   },
   "scripts": {
     "dev": "npm3 install && webpack-dev-server --config webpack.config.js --content-base build/ --inline --hot",
+    "dist": "npm3 install && webpack --config webpack.deploy.config.js",
     "test": ""
   },
   "repository": {
