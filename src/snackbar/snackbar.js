@@ -19,7 +19,7 @@ const Snackbar = () => {
   const $defaults = SNACKBAR;
 
   /**
-   * exported show function
+   * public show function
    */
   Snackbar.show = function($options) {
     var options = extend(true, $defaults, $options);
