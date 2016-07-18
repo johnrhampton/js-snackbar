@@ -6,11 +6,11 @@ import Snackbar from '../snackbar/snackbar';
 export default class App extends Component {
   constructor(props) {
     super(props);
-    document.title = 'Snackbar Local';
+    document.title = 'SnackBar Local';
   }
 
   _showSnackBar(position) {
-    Snackbar.show({});
+    Snackbar.show({pos: position});
   }
 
   render() {
@@ -24,18 +24,20 @@ export default class App extends Component {
 
         <div className="mdl-grid">
           <div className="mdl-cell mdl-cell--4-col">
-            <button onClick={this._showSnackBar.bind('top-left')}
+            <button onClick={this._showSnackBar.bind(this, 'top-left')}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Top Left
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col">
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+            <button onClick={this._showSnackBar.bind(this, 'top-center')}
+                    className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Top Center
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col">
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+            <button onClick={this._showSnackBar.bind(this, 'top-right')}
+                    className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Top Right
             </button>
           </div>
@@ -43,17 +45,20 @@ export default class App extends Component {
 
         <div className="mdl-grid">
           <div className="mdl-cell mdl-cell--4-col">
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+            <button onClick={this._showSnackBar.bind(this, 'bottom-left')}
+                    className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Bottom Left
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col">
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+            <button onClick={this._showSnackBar.bind(this, 'bottom-center')}
+                    className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Bottom Center
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col">
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+            <button onClick={this._showSnackBar.bind(this, 'bottom-right')}
+                    className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Bottom Right
             </button>
           </div>
