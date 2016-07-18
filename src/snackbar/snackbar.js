@@ -1,5 +1,5 @@
 /*!
- * Snackbar v0.1.5
+ * Snackbar v0.1.4
  * http://polonel.com/Snackbar
  *
  * Copyright 2016 Chris Brame and other contributors
@@ -7,32 +7,48 @@
  * https://github.com/polonel/Snackbar/blob/master/LICENSE
  */
 
-// stylesheets
-require('../assets/styles/snackbar.sass');
-
-import {extend} from './extend';
 import {SNACKBAR, INNER_ELEMENT} from './defaults';
+import {extend} from './extend';
 
-const Snackbar = () => {
+(function() {
+  'use strict';
 
-  let Snackbar = {
-    current: null
+  var root = typeof self == 'object' && self.self === self && self ||
+             typeof global == 'object' && global.global === global && global ||
+             this;
+
+  var Snackbar = function(obj) {
+    if (obj instanceof Snackbar) {
+      return Snackbar;
+    }
+    if (!(this instanceof Snackbar)) {
+      return new Snackbar(obj);
+    }
+    this._wrapped = obj;
   };
 
-  const $defaults = SNACKBAR;
+  if (typeof exports != 'undefined' && !exports.nodeType) {
+    if (typeof module != 'undefined' && !module.nodeType && module.exports) {
+      exports = module.exports = Snackbar;
+    }
+    exports.Snackbar = Snackbar;
+  } else {
+    root.Snackbar = Snackbar;
+  }
+
+  Snackbar.current = null;
+  var $defaults = SNACKBAR;
 
   /**
-   * public show function
+   * show Snackbar
    */
   Snackbar.show = function($options) {
     var options = extend(true, $defaults, $options);
 
     if (Snackbar.current) {
       Snackbar.current.style.opacity = 0;
-
       setTimeout(function() {
         var $parent = this.parentElement;
-
         // possible null if too many/fast Snackbars
         if ($parent) {
           $parent.removeChild(this);
@@ -40,48 +56,61 @@ const Snackbar = () => {
       }.bind(Snackbar.current), 500);
     }
 
-    // build Snackbar container
-    buildSnackbarContainer.call(this, options);
+    // build snackbar container
+    buildSnackbarContainer(options);
 
-    // build Snackbar inner element
-    buildInnerElement.call(this, options);
+    // build inner snackbar element
+    buildInnerElement(options);
 
     // conditionally add action button
-    addActionButton.call(this, options);
+    addActionButton(options);
 
-    // add timeout for duration
     setTimeout(function() {
       if (Snackbar.current === this) {
         Snackbar.current.style.opacity = 0;
       }
     }.bind(Snackbar.snackbar), options.duration);
 
-    // add transitioned event handler
+    // add transition end handler
     Snackbar.snackbar.addEventListener('transitionend', handleTransitioned.bind(Snackbar.snackbar));
 
     // set current snackbar
     Snackbar.current = Snackbar.snackbar;
 
-    // adjustments prior to appending to body
-    preStyleAdjust.call(this, options);
+    // adjust style prior to appending to body
+    preStyleAdjust(options);
 
-    // var $bottom = getComputedStyle(Snackbar.snackbar).bottom;
-    // var $top = getComputedStyle(Snackbar.snackbar).top;
+    // append to body, set opacity and class
+    displaySnackbar(options);
 
-    // append to body and display
-    document.body.appendChild(Snackbar.snackbar);
-    Snackbar.snackbar.style.opacity = 1;
-    Snackbar.snackbar.className = 'snackbar-container ' + options.customClass + ' snackbar-pos ' + options.pos;
-
-    postStyleAdjust.call(this, options);
+    // adjust style after appending to body
+    postStyleAdjust(options);
   };
 
   /**
-   * public close function
+   * close Snackbar
    */
-  Snackbar.close = () => {
+  Snackbar.close = function() {
     if (Snackbar.current) {
       Snackbar.current.style.opacity = 0;
+    }
+  };
+
+  /**
+   * conditionally add action button
+   */
+  const addActionButton = (options) => {
+    if (options.showAction) {
+      let actionButton = document.createElement('button');
+      actionButton.className = 'action';
+      actionButton.innerHTML = options.actionText;
+      actionButton.style.color = options.actionTextColor;
+
+      actionButton.addEventListener('click', () => {
+        options.onActionClick(Snackbar.snackbar);
+      });
+
+      Snackbar.snackbar.appendChild(actionButton);
     }
   };
 
@@ -112,21 +141,16 @@ const Snackbar = () => {
   };
 
   /**
-   * conditionally add action button
+   * append to body, set opacity to 1, set classes
    */
-  const addActionButton = (options) => {
-    if (options.showAction) {
-      var actionButton = document.createElement('button');
-      actionButton.className = 'action';
-      actionButton.innerHTML = options.actionText;
-      actionButton.style.color = options.actionTextColor;
+  const displaySnackbar = (options) => {
+    document.body.appendChild(Snackbar.snackbar);
 
-      actionButton.addEventListener('click', () => {
-        options.onActionClick(Snackbar.snackbar);
-      });
+    var $bottom = getComputedStyle(Snackbar.snackbar).bottom;
+    var $top = getComputedStyle(Snackbar.snackbar).top;
 
-      Snackbar.snackbar.appendChild(actionButton);
-    }
+    Snackbar.snackbar.style.opacity = 1;
+    Snackbar.snackbar.className = 'snackbar-container ' + options.customClass + ' snackbar-pos ' + options.pos;
   };
 
   /**
@@ -169,21 +193,7 @@ const Snackbar = () => {
         Snackbar.snackbar.style.bottom = '-25px';
         break;
     }
-
-    // if (options.pos === 'top-left' || options.pos === 'top-right') {
-    //   Snackbar.snackbar.style.top = 0;
-    // } else {
-    //   if (options.pos === 'top-center' || options.pos === 'top') {
-    //     Snackbar.snackbar.style.top = '25px';
-    //   } else {
-    //     if (options.pos === 'bottom-center' || options.pos === 'bottom') {
-    //       Snackbar.snackbar.style.bottom = '-25px';
-    //     }
-    //   }
-    // }
   };
 
   return Snackbar;
-};
-
-export default Snackbar();
+}());
