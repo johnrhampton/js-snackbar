@@ -8,17 +8,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack_common = require('./webpack.common.config');
 
 module.exports = {
-  context: __dirname + '/src',
+  context: __dirname + '/src/snackbar',
 
   entry: [
     // Set up an ES6-ish environment
     'babel-polyfill',
 
     // js entry
-    './app.js',
-
-    // html entry
-    './index.html'
+    './snackbar.js'
   ],
 
   module: {
