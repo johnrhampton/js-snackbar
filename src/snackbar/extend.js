@@ -1,6 +1,11 @@
 // Pure JS Extend
 // http://gomakethings.com/vanilla-javascript-version-of-jquery-extend/
-export const extend = () => {
+
+module.exports = {
+  extend: extend
+};
+
+function extend() {
   var extended = {};
   var deep = false;
   var i = 0;
@@ -29,4 +34,4 @@ export const extend = () => {
   }
 
   return extended;
-};
+}
