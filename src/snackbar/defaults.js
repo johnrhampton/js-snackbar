@@ -1,5 +1,5 @@
 export const SNACKBAR = {
-  text: '',
+  text: 'Default Text',
   textColor: '#ffffff',
   width: 'auto',
   showAction: true,
