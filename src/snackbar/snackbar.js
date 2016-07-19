@@ -57,7 +57,7 @@ import {extend} from './extend';
     }
 
     // build snackbar container
-    buildSnackbarContainer(options);
+    buildContainerElement(options);
 
     // build inner snackbar element
     buildInnerElement(options);
@@ -117,7 +117,7 @@ import {extend} from './extend';
   /**
    * build Snackbar container element
    */
-  const buildSnackbarContainer = (options) => {
+  const buildContainerElement = (options) => {
     Snackbar.snackbar = document.createElement('div');
     Snackbar.snackbar.className = 'snackbar-container ' + options.customClass;
     Snackbar.snackbar.style.width = options.width;
