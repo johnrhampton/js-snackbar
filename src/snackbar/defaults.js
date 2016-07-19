@@ -15,8 +15,8 @@ export const SNACKBAR = {
   pos: 'bottom-left',
   duration: 5000,
   customClass: '',
-  showNotifyIcon: false,
-  notifyIcon: 'info_outline',
+  notifyIcon: null, //'info_outline',
+  imgSrc: null,
   onActionClick: (element) => {
     element.style.opacity = 0;
   }
