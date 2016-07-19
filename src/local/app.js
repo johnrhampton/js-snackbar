@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 
 // Images and icons
-require.context('../assets/test_images', true, /.*/);
+require.context('../assets/images', true, /.*/);
 
 import StartScreen from './StartScreen';
 
