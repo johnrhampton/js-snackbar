@@ -243,11 +243,11 @@ import {getContext} from './util';
         break;
       case 'top':
       case 'top-center':
-        Snackbar.snackbar.style.top = '25px';
+        Snackbar.snackbar.style.top = '39px';
         break;
       case 'bottom':
       case 'bottom-center':
-        Snackbar.snackbar.style.bottom = '-25px';
+        Snackbar.snackbar.style.bottom = '-39px';
         break;
     }
   };
