@@ -45,15 +45,10 @@ import {extend} from './extend';
   Snackbar.show = function($options) {
     var options = extend(true, $defaults, $options);
 
+    // remove current snackbar
     if (Snackbar.current) {
       Snackbar.current.style.opacity = 0;
-      setTimeout(function() {
-        var $parent = this.parentElement;
-        // possible null if too many/fast Snackbars
-        if ($parent) {
-          $parent.removeChild(this);
-        }
-      }.bind(Snackbar.current), 500);
+      setTimeout(removeCurrent.bind(Snackbar.current), 500);
     }
 
     // build snackbar container
@@ -65,11 +60,8 @@ import {extend} from './extend';
     // conditionally add action button
     addActionButton(options);
 
-    setTimeout(function() {
-      if (Snackbar.current === this) {
-        Snackbar.current.style.opacity = 0;
-      }
-    }.bind(Snackbar.snackbar), options.duration);
+    // hide current - delayed by options.duration
+    setTimeout(handleHideCurrent.bind(Snackbar.snackbar), options.duration);
 
     // add transition end handler
     Snackbar.snackbar.addEventListener('transitionend', handleTransitioned.bind(Snackbar.snackbar));
@@ -167,6 +159,15 @@ import {extend} from './extend';
   }
 
   /**
+   * hide current snackbar - invoked after options.duration
+   */
+  function handleHideCurrent() {
+    if (Snackbar.current === this) {
+      Snackbar.current.style.opacity = 0;
+    }
+  }
+
+  /**
    * adjust style prior to appending to body
    */
   const preStyleAdjust = (options) => {
@@ -194,6 +195,16 @@ import {extend} from './extend';
         break;
     }
   };
+
+  /**
+   * removes the current snackbar
+   */
+  function removeCurrent() {
+    let $parent = this.parentElement;
+
+    // possible null if too many/fast Snackbars
+    $parent && $parent.removeChild(this);
+  }
 
   return Snackbar;
 }());
