@@ -9,7 +9,7 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const webpack_common = require('./webpack.common.config');
 
 module.exports = {
-  context: __dirname + '/src',
+  context: __dirname + '/src/local',
 
   entry: [
     // Set up an ES6-ish environment

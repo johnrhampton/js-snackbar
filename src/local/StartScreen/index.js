@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 
-import Snackbar from '../snackbar/snackbar';
+import Snackbar from '../../snackbar/snackbar';
 
 export default class App extends Component {
   constructor(props) {
