@@ -1,5 +1,5 @@
 /*!
- * Snackbar v0.1.4
+ * Snackbar v0.1.5
  * http://polonel.com/Snackbar
  *
  * Copyright 2016 Chris Brame and other contributors
@@ -7,15 +7,18 @@
  * https://github.com/polonel/Snackbar/blob/master/LICENSE
  */
 
+// main stylesheet
+require('../assets/styles/snackbar.scss');
+
 import {SNACKBAR, INNER_ELEMENT} from './defaults';
 import {extend} from './extend';
+import {getContext} from './util';
 
 (function() {
   'use strict';
 
-  var root = typeof self == 'object' && self.self === self && self ||
-             typeof global == 'object' && global.global === global && global ||
-             this;
+  // get the snackbar context
+  var root = getContext.call(this, self, global);
 
   var Snackbar = function(obj) {
     if (obj instanceof Snackbar) {
