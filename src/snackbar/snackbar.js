@@ -163,20 +163,38 @@ import {getContext} from './util';
     $p.innerHTML = options.text;
 
     // should we add notify icon
-    options.showNotifyIcon && addNotifyIcon($p, options);
+    options.notifyIcon && !options.imgSrc && addNotifyIcon($p, options);
+
+    // should we add an image
+    options.imgSrc && addNotifyImage($p, options);
 
     Snackbar.snackbar.appendChild($p);
     Snackbar.snackbar.style.background = options.backgroundColor;
   };
 
   /**
-   * add notify icon inner element, override defaults
+   * add notify icon to inner element, override defaults
    */
   const addNotifyIcon = ($element, options) => {
     let $icon = document.createElement('i');
     $icon.className = 'material-icons snackbar-icon';
     $icon.innerHTML = options.notifyIcon;
     Snackbar.snackbar.appendChild($icon);
+
+    // override inner element style
+    $element.style.fontSize = NOTIFY_ICON_OVERRIDES.fontSize;
+    $element.style.fontWeight = NOTIFY_ICON_OVERRIDES.fontWeight;
+    $element.style.lineHeight = NOTIFY_ICON_OVERRIDES.lineHeight;
+  };
+
+  /**
+   * add notify image to inner element, override defaults
+   */
+  const addNotifyImage = ($element, options) => {
+    let $image = document.createElement('img');
+    $image.src = options.imgSrc;
+    $image.className = 'snackbar-icon';
+    Snackbar.snackbar.appendChild($image);
 
     // override inner element style
     $element.style.fontSize = NOTIFY_ICON_OVERRIDES.fontSize;
