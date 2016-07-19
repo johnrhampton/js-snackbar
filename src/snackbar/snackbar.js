@@ -10,7 +10,7 @@
 // main stylesheet
 require('../assets/styles/snackbar.scss');
 
-import {SNACKBAR, INNER_ELEMENT} from './defaults';
+import {ACTION_TYPE, SNACKBAR, INNER_ELEMENT, NOTIFY_ICON_OVERRIDES} from './defaults';
 import {extend} from './extend';
 import {getContext} from './util';
 
@@ -92,21 +92,52 @@ import {getContext} from './util';
   };
 
   /**
-   * conditionally add action button
+   * conditionally add an action button
    */
   const addActionButton = (options) => {
-    if (options.showAction) {
-      let actionButton = document.createElement('button');
-      actionButton.className = 'action';
-      actionButton.innerHTML = options.actionText;
-      actionButton.style.color = options.actionTextColor;
-
-      actionButton.addEventListener('click', () => {
-        options.onActionClick(Snackbar.snackbar);
-      });
-
-      Snackbar.snackbar.appendChild(actionButton);
+    switch (options.actionType) {
+      case ACTION_TYPE.TEXT:
+        return appendTextButton(options);
+      case ACTION_TYPE.CLOSE:
+        return appendCloseButton(options);
+      case ACTION_TYPE.NONE:
+        break;
     }
+  };
+
+  /**
+   * add text action button
+   */
+  const appendTextButton = (options) => {
+    let actionButton = document.createElement('button');
+    actionButton.className = 'action';
+    actionButton.innerHTML = options.actionText;
+    actionButton.style.color = options.actionTextColor;
+
+    actionButton.addEventListener('click', () => {
+      options.onActionClick(Snackbar.snackbar);
+    });
+
+    Snackbar.snackbar.appendChild(actionButton);
+  };
+
+  /**
+   * add icon action button
+   */
+  const appendCloseButton = (options) => {
+    let closeButton = document.createElement('button');
+    closeButton.className = 'mdl-button mdl-js-button mdl-button--icon snackbar-close-button';
+
+    let $icon = document.createElement('i');
+    $icon.className = 'material-icons';
+    $icon.innerHTML = 'close';
+    closeButton.appendChild($icon);
+
+    closeButton.addEventListener('click', () => {
+      options.onActionClick(Snackbar.snackbar);
+    });
+
+    Snackbar.snackbar.appendChild(closeButton);
   };
 
   /**
@@ -131,8 +162,26 @@ import {getContext} from './util';
     $p.style.lineHeight = INNER_ELEMENT.lineHeight;
     $p.innerHTML = options.text;
 
+    // should we add notify icon
+    options.showNotifyIcon && addNotifyIcon($p);
+
     Snackbar.snackbar.appendChild($p);
     Snackbar.snackbar.style.background = options.backgroundColor;
+  };
+
+  /**
+   * add notify icon inner element, override defaults
+   */
+  const addNotifyIcon = ($element) => {
+    let $icon = document.createElement('i');
+    $icon.className = 'material-icons snackbar-icon';
+    $icon.innerHTML = 'face';
+    Snackbar.snackbar.appendChild($icon);
+
+    // override inner element style
+    $element.style.fontSize = NOTIFY_ICON_OVERRIDES.fontSize;
+    $element.style.fontWeight = NOTIFY_ICON_OVERRIDES.fontWeight;
+    $element.style.lineHeight = NOTIFY_ICON_OVERRIDES.lineHeight;
   };
 
   /**
