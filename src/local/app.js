@@ -1,8 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-import App from './local/App';
+import StartScreen from './StartScreen';
 
 if (document.getElementById('snackbar-local')) {
-  render(<App />, document.getElementById('snackbar-local'));
+  render(<StartScreen />, document.getElementById('snackbar-local'));
 }
