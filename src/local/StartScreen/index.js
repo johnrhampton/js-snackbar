@@ -73,7 +73,7 @@ export default class App extends Component {
 
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'center'}}>
-            <button onClick={this._showSnackBar.bind(this, {text: 'I need a custom class!', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', imgSrc: 'http://lorempixel.com/output/city-h-g-256-294-10.jpg'})}
+            <button onClick={this._showSnackBar.bind(this, {text: 'Some Custom Text!', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', imgSrc: 'http://lorempixel.com/output/city-h-g-256-294-10.jpg'})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Custom w/ Image
             </button>
