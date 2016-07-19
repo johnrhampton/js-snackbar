@@ -29,13 +29,13 @@ export default class App extends Component {
               Top Left
             </button>
           </div>
-          <div className="mdl-cell mdl-cell--4-col">
+          <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'center'}}>
             <button onClick={this._showSnackBar.bind(this, 'top-center')}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Top Center
             </button>
           </div>
-          <div className="mdl-cell mdl-cell--4-col">
+          <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'right'}}>
             <button onClick={this._showSnackBar.bind(this, 'top-right')}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Top Right
@@ -50,13 +50,13 @@ export default class App extends Component {
               Bottom Left
             </button>
           </div>
-          <div className="mdl-cell mdl-cell--4-col">
+          <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'center'}}>
             <button onClick={this._showSnackBar.bind(this, 'bottom-center')}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Bottom Center
             </button>
           </div>
-          <div className="mdl-cell mdl-cell--4-col">
+          <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'right'}}>
             <button onClick={this._showSnackBar.bind(this, 'bottom-right')}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Bottom Right
