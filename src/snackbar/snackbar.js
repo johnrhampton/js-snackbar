@@ -163,7 +163,7 @@ import {getContext} from './util';
     $p.innerHTML = options.text;
 
     // should we add notify icon
-    options.showNotifyIcon && addNotifyIcon($p);
+    options.showNotifyIcon && addNotifyIcon($p, options);
 
     Snackbar.snackbar.appendChild($p);
     Snackbar.snackbar.style.background = options.backgroundColor;
@@ -172,10 +172,10 @@ import {getContext} from './util';
   /**
    * add notify icon inner element, override defaults
    */
-  const addNotifyIcon = ($element) => {
+  const addNotifyIcon = ($element, options) => {
     let $icon = document.createElement('i');
     $icon.className = 'material-icons snackbar-icon';
-    $icon.innerHTML = 'face';
+    $icon.innerHTML = options.notifyIcon;
     Snackbar.snackbar.appendChild($icon);
 
     // override inner element style

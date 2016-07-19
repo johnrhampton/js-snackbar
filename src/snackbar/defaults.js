@@ -16,6 +16,7 @@ export const SNACKBAR = {
   duration: 5000,
   customClass: '',
   showNotifyIcon: false,
+  notifyIcon: 'info_outline',
   onActionClick: (element) => {
     element.style.opacity = 0;
   }
