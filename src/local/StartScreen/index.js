@@ -9,8 +9,8 @@ export default class App extends Component {
     document.title = 'SnackBar Local';
   }
 
-  _showSnackBar(position) {
-    Snackbar.show({pos: position});
+  _showSnackBar(payload) {
+    Snackbar.show({pos: payload.position});
   }
 
   render() {
@@ -22,21 +22,35 @@ export default class App extends Component {
           </div>
         </header>
 
+        <div className="snackbar-container snackbar-pos bottom-center"
+             style={{width: 'auto', opacity: '1', bottom: '-39px', background: 'rgb(50, 50, 50)'}}>
+
+          <img src="./assets/images/_c2ba8ed4-26e6-448b-aeec-bed45e8f3f4a_small.png"/>
+
+          <p style={{margin: '0px', padding: '0px', color: 'rgb(255, 255, 255)', fontSize: '26px', fontWeight: '500', lineHeight: '1.3em'}}>
+            Congratulations Sally AgentFace!
+          </p>
+
+          <button className="mdl-button mdl-js-button mdl-button--icon" style={{marginLeft: '20px'}}>
+            <i className="material-icons">close</i>
+          </button>
+        </div>
+
         <div className="mdl-grid">
           <div className="mdl-cell mdl-cell--4-col">
-            <button onClick={this._showSnackBar.bind(this, 'top-left')}
+            <button onClick={this._showSnackBar.bind(this, {position: 'top-left'})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Top Left
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'center'}}>
-            <button onClick={this._showSnackBar.bind(this, 'top-center')}
+            <button onClick={this._showSnackBar.bind(this, {position: 'top-center'})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Top Center
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'right'}}>
-            <button onClick={this._showSnackBar.bind(this, 'top-right')}
+            <button onClick={this._showSnackBar.bind(this, {position: 'top-right'})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Top Right
             </button>
@@ -45,24 +59,26 @@ export default class App extends Component {
 
         <div className="mdl-grid">
           <div className="mdl-cell mdl-cell--4-col">
-            <button onClick={this._showSnackBar.bind(this, 'bottom-left')}
+            <button onClick={this._showSnackBar.bind(this, {position: 'bottom-left'})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Bottom Left
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'center'}}>
-            <button onClick={this._showSnackBar.bind(this, 'bottom-center')}
+            <button onClick={this._showSnackBar.bind(this, {position: 'bottom-center'})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Bottom Center
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'right'}}>
-            <button onClick={this._showSnackBar.bind(this, 'bottom-right')}
+            <button onClick={this._showSnackBar.bind(this, {position: 'bottom-right'})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Bottom Right
             </button>
           </div>
         </div>
+
+
       </div>
     );
   }
