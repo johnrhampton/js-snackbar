@@ -40,6 +40,6 @@ A few of the changes:
 - Ability to use an action icon button
 - Ability to display a notify icon
 - Ability to display a notify image
-- Local hacking environment with React
+- Local React hacking environment
 - ES6 modules
 - Module bundling with Webpack and Babel
