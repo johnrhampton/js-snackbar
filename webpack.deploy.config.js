@@ -1,11 +1,7 @@
 'use strict';
+
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-/**
- * common webpack config
- */
-// const webpack_common = require('./webpack.common.config');
 
 module.exports = {
   context: __dirname + '/src',
