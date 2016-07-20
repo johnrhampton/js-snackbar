@@ -1,5 +1,4 @@
 import {ACTION_TYPE, SNACKBAR, INNER_ELEMENT, NOTIFY_ICON_OVERRIDES} from './defaults';
-import {extend} from './extend';
 
 /**
  * functions to export
@@ -24,9 +23,7 @@ function hide() {
  * show current snackbar
  */
 function show($options) {
-  var options = extend(true, SNACKBAR, $options);
-
-  var second_options = Object.assign(SNACKBAR, $options);
+  var options = Object.assign({}, SNACKBAR, $options);
 
   // remove current snackbar
   if (Snackbar.current) {
@@ -61,12 +58,6 @@ function show($options) {
   // adjust style after appending to body
   postStyleAdjust(options);
 }
-
-/**
- *
- * helper functions
- *
- */
 
 /**
  * conditionally add an action button
