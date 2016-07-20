@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 
-import Snackbar from '../../snackbar/snackbar';
+import {show} from '../../snackbar/snackbar';
 
 export default class App extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export default class App extends Component {
   }
 
   _showSnackBar(payload) {
-    Snackbar.show(payload);
+    show(payload);
   }
 
   render() {
