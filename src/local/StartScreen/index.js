@@ -36,7 +36,7 @@ export default class App extends Component {
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'right'}}>
-            <button onClick={this._showSnackBar.bind(this, {pos: 'top-right'})}
+            <button onClick={this._showSnackBar.bind(this, {pos: 'top-right', actionText: 'OK', actionType: 'TEXT'})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Top Right
             </button>
@@ -70,16 +70,22 @@ export default class App extends Component {
 
         <div className="mdl-grid">
           <div className="mdl-cell mdl-cell--4-col">
-
+            <button onClick={this._showSnackBar.bind(this, {text: 'Some Custom Text!', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', notifyIcon: 'face', actionText: 'OK', actionType: 'TEXT'})}
+                    className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+              Custom Action Text
+            </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'center'}}>
-            <button onClick={this._showSnackBar.bind(this, {text: 'Some Custom Text!', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', imgSrc: 'http://lorempixel.com/output/city-h-g-256-294-10.jpg'})}
+            <button onClick={this._showSnackBar.bind(this, {text: 'Some Custom Text!', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', notifyIcon: 'face'})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
-              Custom w/ Image
+              Custom w/ Icon
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'right'}}>
-
+            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Error Message!', pos: 'bottom-center', backgroundColor: '#F44336', actionType: 'NONE', notifyIcon: 'error_outline'})}
+                    className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+              Custom w/ No Action
+            </button>
           </div>
         </div>
       </div>
