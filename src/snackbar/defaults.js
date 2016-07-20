@@ -8,7 +8,7 @@ export const SNACKBAR = {
   text: 'Default Text',
   textColor: '#ffffff',
   width: 'auto',
-  actionType: ACTION_TYPE.CLOSE,
+  actionType: ACTION_TYPE.NONE,
   actionText: 'Dismiss',
   actionTextColor: '#ffffff',
   backgroundColor: '#323232',
