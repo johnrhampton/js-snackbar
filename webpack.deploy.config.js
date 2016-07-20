@@ -12,10 +12,7 @@ module.exports = {
 
   entry: [
     // js entry
-    './snackbar/index.js',
-
-    // style entry
-    './assets/styles/snackbar.scss'
+    './snackbar/index.js'
   ],
 
   module: {
@@ -52,14 +49,15 @@ module.exports = {
   ],
 
   output: {
-    filename: 'js-snackbar.js',
+    filename: 'snackbar.js',
+
     path: __dirname + '/dist',
 
     /**
      * export the bundle as library (output.library is the name)
      * Use this, if you are writing a library and want to publish it as single file.
      */
-    library: 'js-snackbar',
+    library: 'snackbar',
 
     /**
      *  means using universal module definition for the final result
@@ -67,6 +65,10 @@ module.exports = {
      */
     libraryTarget: 'umd',
 
+    /**
+     * true will name the AMD module
+     *    if libraryTarget = umd and library is set
+     */
     umdNamedDefine: true
   },
 
