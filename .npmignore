@@ -1,0 +1,12 @@
+# node
+node_modules/
+
+# ide
+.idea/
+
+# local
+/build/
+/src/
+/.babelrc
+/webpack.config.js
+/webpack.deploy.config.js
