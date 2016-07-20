@@ -12,8 +12,10 @@ npm install js-snackbar
 // require css for your app's bundle process
 require('../node_modules/js-snackbar/dist/snackbar.css');
 
+// import the show function
 import {show} from 'js-snackbar';
 
+// basic example
 show({text: 'My Message', pos: 'bottom-right'});
 
 // add a custom class to override styles, use the icon close button, display a face notify icon
