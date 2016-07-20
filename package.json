@@ -5,8 +5,7 @@
   "main": "src/js/snackbar.js",
   "scripts": {
     "dev": "npm3 install && webpack-dev-server --config webpack.config.js --content-base build/ --inline --hot",
-    "dist": "npm3 install && npm3 prepublish && webpack --config webpack.deploy.config.js",
-    "prepublish": "babel ./src/snackbar --out-dir ./src/lib --presets es2015"
+    "dist": "npm3 install && npm3 prepublish && webpack --config webpack.deploy.config.js"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
