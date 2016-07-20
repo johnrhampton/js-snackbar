@@ -10,7 +10,7 @@ export const SNACKBAR = {
   width: 'auto',
   actionType: ACTION_TYPE.CLOSE,
   actionText: 'Dismiss',
-  actionTextColor: '#4caf50',
+  actionTextColor: '#ffffff',
   backgroundColor: '#323232',
   pos: 'bottom-left',
   duration: 5000,
