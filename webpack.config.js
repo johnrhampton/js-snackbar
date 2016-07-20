@@ -9,17 +9,20 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const webpack_common = require('./webpack.common.config');
 
 module.exports = {
-  context: __dirname + '/src/local',
+  context: __dirname + '/src',
 
   entry: [
     // Set up an ES6-ish environment
     'babel-polyfill',
 
     // js entry
-    './app.js',
+    './local/app.js',
 
     // html entry
-    './index.html'
+    './local/index.html',
+
+    // style entry
+    './assets/styles/snackbar.scss'
   ],
 
   module: {
