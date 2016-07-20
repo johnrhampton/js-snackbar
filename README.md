@@ -18,7 +18,7 @@ show({pos: 'bottom-right'});
 ```
 
 ## Requirements
-In order to display the _notify icons_ and _icon close button_, we rely on Material Design icons and fonts as well as Material Design Lite stylesheets.
+In order to display the _notify icons_ and _icon close button_, we rely on Material Design icons, Google fonts, and Material Design Lite stylesheets.
  
 If your project is not already referencing these, you can add the following to the `<head>` section of your `index.html` file.
 
