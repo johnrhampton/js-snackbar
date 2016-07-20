@@ -14,8 +14,16 @@ require('../node_modules/js-snackbar/dist/snackbar.css');
 
 import {show} from 'js-snackbar';
 
-show({pos: 'bottom-right'});
+show({text: 'My Message', pos: 'bottom-right'});
+
+// add a custom class to override styles, use the icon close button, display a face notify icon
+show({text: 'Some Custom Text!', pos: 'top-right', customClass: 'custom-class', notifyIcon: 'face', actionType: 'CLOSE'});
+
+// override background
+show({text: 'Custom Error Message!', pos: 'bottom-center', backgroundColor: '#F44336'});
 ```
+
+Find additional examples in the [StartScreen component](https://github.com/johnrhampton/SnackBar/blob/master/src/local/StartScreen/index.js)
 
 ## Requirements
 In order to display the _notify icons_ and _icon close button_, we rely on Material Design icons, Google fonts, and Material Design Lite stylesheets.
