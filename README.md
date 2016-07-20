@@ -42,4 +42,4 @@ A few of the changes:
 - Ability to display a notify image
 - Local hacking environment with React
 - ES6 modules
-- Module bundling with Webpack
+- Module bundling with Webpack and Babel
