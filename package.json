@@ -1,8 +1,13 @@
 {
-  "name": "node-snackbar",
+  "name": "js-snackbar",
   "version": "0.1.6",
-  "description": "Notifications insipired by Google Material Design",
+  "description": "Custom Notifications insipired by Google Material Design",
   "main": "src/js/snackbar.js",
+  "scripts": {
+    "dev": "npm3 install && webpack-dev-server --config webpack.config.js --content-base build/ --inline --hot",
+    "dist": "npm3 install && npm3 prepublish && webpack --config webpack.deploy.config.js",
+    "prepublish": "babel ./src/snackbar --out-dir ./src/lib --presets es2015,react"
+  },
   "devDependencies": {
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
@@ -25,25 +30,18 @@
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
-  "scripts": {
-    "dev": "npm3 install && webpack-dev-server --config webpack.config.js --content-base build/ --inline --hot",
-    "dist": "npm3 install && npm3 prepublish && webpack --config webpack.deploy.config.js",
-    "prepublish": "babel ./src/snackbar --out-dir ./src/lib --presets es2015,react",
-    "test": ""
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/polonel/SnackBar.git"
+    "url": "git+https://github.com/johnrhampton/SnackBar"
   },
   "bugs": {
-    "url": "https://github.com/polonel/SnackBar/issues"
+    "url": "https://github.com/johnrhampton/SnackBar/issues"
   },
   "keywords": [
     "snackbar",
-    "matieral-design",
-    "toast"
+    "matieral-design"
   ],
-  "author": "Chris Brame",
+  "author": "JRH",
   "license": "MIT",
-  "homepage": "http://www.polonel.com/snackbar"
+  "homepage": "https://github.com/johnrhampton/SnackBar"
 }
