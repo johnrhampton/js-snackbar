@@ -1,4 +1,4 @@
-import {ACTION_TYPE, SNACKBAR, INNER_ELEMENT, NOTIFY_ICON_OVERRIDES} from './defaults';
+import {ACTION_TYPE, SNACKBAR, INNER_ELEMENT} from './defaults';
 
 // require main stylesheet
 require('../assets/styles/snackbar.scss');
