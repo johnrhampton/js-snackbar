@@ -29,9 +29,3 @@ export const INNER_ELEMENT = {
   fontWeight: 300,
   lineHeight: '1em'
 };
-
-export const NOTIFY_ICON_OVERRIDES = {
-  fontSize: '26px',
-  fontWeight: '500',
-  lineHeight: '1.3em'
-};

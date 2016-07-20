@@ -151,11 +151,6 @@ function addNotifyIcon($element, options) {
   $icon.className = 'material-icons snackbar-icon';
   $icon.innerHTML = options.notifyIcon;
   Snackbar.snackbar.appendChild($icon);
-
-  // override inner element style
-  $element.style.fontSize = NOTIFY_ICON_OVERRIDES.fontSize;
-  $element.style.fontWeight = NOTIFY_ICON_OVERRIDES.fontWeight;
-  $element.style.lineHeight = NOTIFY_ICON_OVERRIDES.lineHeight;
 }
 
 /**
@@ -166,11 +161,6 @@ function addNotifyImage($element, options) {
   $image.src = options.imgSrc;
   $image.className = 'snackbar-icon';
   Snackbar.snackbar.appendChild($image);
-
-  // override inner element style
-  $element.style.fontSize = NOTIFY_ICON_OVERRIDES.fontSize;
-  $element.style.fontWeight = NOTIFY_ICON_OVERRIDES.fontWeight;
-  $element.style.lineHeight = NOTIFY_ICON_OVERRIDES.lineHeight;
 }
 
 /**
