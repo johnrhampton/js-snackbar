@@ -134,10 +134,10 @@ function buildInnerElement(options) {
   $p.innerHTML = options.text;
 
   // should we add notify icon
-  options.notifyIcon && !options.imgSrc && addNotifyIcon($p, options);
+  options.notifyIcon && !options.imgSrc && addNotifyIcon(options);
 
   // should we add an image
-  options.imgSrc && addNotifyImage($p, options);
+  options.imgSrc && addNotifyImage(options);
 
   Snackbar.snackbar.appendChild($p);
   Snackbar.snackbar.style.background = options.backgroundColor;
@@ -146,7 +146,7 @@ function buildInnerElement(options) {
 /**
  * add notify icon to inner element, override defaults
  */
-function addNotifyIcon($element, options) {
+function addNotifyIcon(options) {
   let $icon = document.createElement('i');
   $icon.className = 'material-icons snackbar-icon';
   $icon.innerHTML = options.notifyIcon;
@@ -156,7 +156,7 @@ function addNotifyIcon($element, options) {
 /**
  * add notify image to inner element, override defaults
  */
-function addNotifyImage($element, options) {
+function addNotifyImage(options) {
   let $image = document.createElement('img');
   $image.src = options.imgSrc;
   $image.className = 'snackbar-icon';
