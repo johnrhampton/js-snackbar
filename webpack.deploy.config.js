@@ -12,7 +12,7 @@ module.exports = {
 
   entry: [
     // js entry
-    './lib/index.js',
+    './snackbar/index.js',
 
     // style entry
     './assets/styles/snackbar.scss'
