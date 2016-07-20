@@ -2,7 +2,7 @@
   "name": "js-snackbar",
   "version": "0.1.8",
   "description": "Custom Material Design inspired SnackBar notifications",
-  "main": "src/js/snackbar.js",
+  "main": "dist/snackbar.js",
   "scripts": {
     "dev": "npm3 install && webpack-dev-server --config webpack.config.js --content-base build/ --inline --hot",
     "dist": "npm3 install && webpack --config webpack.deploy.config.js"
