@@ -3,11 +3,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
-/**
- * common webpack config
- */
-const webpack_common = require('./webpack.common.config');
-
 module.exports = {
   context: __dirname + '/src',
 
@@ -33,7 +28,25 @@ module.exports = {
       }
     ],
 
-    loaders: webpack_common.loaders
+    loaders: [
+      {
+        loader: 'babel',
+
+        test: /\.js$/,
+
+        exclude: /node_modules/
+      },
+
+      {
+        test: /\.html$/,
+        loader: 'file?name=[name].[ext]'
+      },
+
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style', 'css!sass')
+      }
+    ]
   },
 
   plugins: [
