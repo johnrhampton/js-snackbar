@@ -1,7 +1,7 @@
 {
   "name": "js-snackbar",
   "version": "0.1.7",
-  "description": "Custom Notifications insipired by Google Material Design",
+  "description": "Custom Material Design inspired SnackBar notifications",
   "main": "src/js/snackbar.js",
   "scripts": {
     "dev": "npm3 install && webpack-dev-server --config webpack.config.js --content-base build/ --inline --hot",
