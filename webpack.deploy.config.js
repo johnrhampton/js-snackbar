@@ -8,11 +8,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack_common = require('./webpack.common.config');
 
 module.exports = {
-  context: __dirname + '/src/lib',
+  context: __dirname + '/src',
 
   entry: [
     // js entry
-    './snackbar.js'
+    './lib/snackbar.js',
+
+    // style entry
+    './assets/styles/snackbar.scss'
   ],
 
   module: {
@@ -27,7 +30,14 @@ module.exports = {
 
   output: {
     filename: 'snackbar.js',
-    path: __dirname + '/dist'
+    path: __dirname + '/dist',
+    library: 'js-snackbar',
+    /**
+     *  means using universal module definition for the final result
+     *  this piece of code recognizes the environment and provides a proper bootstrapping mechanism
+     */
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
 
   devtool: 'eval'
