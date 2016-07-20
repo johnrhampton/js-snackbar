@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 
-import {show} from '../../snackbar/snackbar';
+import {show} from '../../snackbar';
 
 export default class App extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class App extends Component {
       <div>
         <header className="mdl-layout__header">
           <div className="mdl-layout__header-row">
-            <span className="mdl-layout-title">Custom Notifications inspired by Google Material Design</span>
+            <span className="mdl-layout-title">Custom SnackBar Notifications inspired by Material Design</span>
           </div>
         </header>
 
