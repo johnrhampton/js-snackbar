@@ -30,7 +30,7 @@ export default class App extends Component {
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'center'}}>
-            <button onClick={this._showSnackBar.bind(this, {pos: 'top-center'})}
+            <button onClick={this._showSnackBar.bind(this, {pos: 'top-center', actionType: 'TEXT'})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Top Center
             </button>
@@ -82,7 +82,7 @@ export default class App extends Component {
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'right'}}>
-            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Error Message!', pos: 'bottom-center', backgroundColor: '#F44336', actionType: 'NONE', notifyIcon: 'error_outline'})}
+            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Error Message!', pos: 'bottom-center', backgroundColor: '#F44336', actionType: 'NONE'})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Custom w/ No Action
             </button>
