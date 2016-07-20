@@ -9,6 +9,9 @@ npm install js-snackbar
 
 ## Usage
 ```javascript
+// require css for your app's bundle process
+require('../node_modules/js-snackbar/dist/snackbar.css');
+
 import {show} from 'js-snackbar';
 
 show({pos: 'bottom-right'});
