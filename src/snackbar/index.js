@@ -6,7 +6,7 @@ require('../assets/styles/snackbar.scss');
 /**
  * functions to export
  */
-export {show, hide};
+export {show, hide, ACTION_TYPE};
 
 /**
  * define Snackbar object
