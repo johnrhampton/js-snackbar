@@ -81,7 +81,7 @@ export default class App extends Component {
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'right'}}>
-            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Error Message!', pos: 'bottom-center', backgroundColor: '#F44336', actionType: ACTION_TYPE.NONE})}
+            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Error Message!', backgroundColor: '#F44336', actionType: ACTION_TYPE.NONE})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Custom w/ No Action
             </button>
