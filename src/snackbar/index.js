@@ -25,8 +25,8 @@ function hide() {
 /**
  * show current snackbar
  */
-function show($options) {
-  var options = Object.assign({}, SNACKBAR, $options);
+function show(custom_options) {
+  var options = Object.assign({}, SNACKBAR, custom_options);
 
   // remove current snackbar
   if (Snackbar.current) {
@@ -99,10 +99,10 @@ function appendCloseButton(options) {
   let closeButton = document.createElement('button');
   closeButton.className = 'mdl-button mdl-js-button mdl-button--icon snackbar-close-button';
 
-  let $icon = document.createElement('i');
-  $icon.className = 'material-icons';
-  $icon.innerHTML = 'close';
-  closeButton.appendChild($icon);
+  let icon = document.createElement('i');
+  icon.className = 'material-icons';
+  icon.innerHTML = 'close';
+  closeButton.appendChild(icon);
 
   closeButton.addEventListener('click', () => {
     options.onActionClick(Snackbar.snackbar);
@@ -124,14 +124,14 @@ function buildContainerElement(options) {
  * build Snackbar inner element
  */
 function buildInnerElement(options) {
-  var $p = document.createElement('p');
-  $p.style.margin = INNER_ELEMENT.margin;
-  $p.style.padding = INNER_ELEMENT.padding;
-  $p.style.color = options.textColor;
-  $p.style.fontSize = INNER_ELEMENT.fontSize;
-  $p.style.fontWeight = INNER_ELEMENT.fontWeight;
-  $p.style.lineHeight = INNER_ELEMENT.lineHeight;
-  $p.innerHTML = options.text;
+  var p = document.createElement('p');
+  p.style.margin = INNER_ELEMENT.margin;
+  p.style.padding = INNER_ELEMENT.padding;
+  p.style.color = options.textColor;
+  p.style.fontSize = INNER_ELEMENT.fontSize;
+  p.style.fontWeight = INNER_ELEMENT.fontWeight;
+  p.style.lineHeight = INNER_ELEMENT.lineHeight;
+  p.innerHTML = options.text;
 
   // should we add notify icon
   addNotifyIcon(options);
@@ -139,7 +139,7 @@ function buildInnerElement(options) {
   // should we add an image
   addNotifyImage(options);
 
-  Snackbar.snackbar.appendChild($p);
+  Snackbar.snackbar.appendChild(p);
   Snackbar.snackbar.style.background = options.backgroundColor;
 }
 
@@ -148,10 +148,10 @@ function buildInnerElement(options) {
  */
 function addNotifyIcon(options) {
   if (options.notifyIcon && !options.imgSrc) {
-    let $icon = document.createElement('i');
-    $icon.className = 'material-icons snackbar-icon';
-    $icon.innerHTML = options.notifyIcon;
-    Snackbar.snackbar.appendChild($icon);
+    let icon = document.createElement('i');
+    icon.className = 'material-icons snackbar-icon';
+    icon.innerHTML = options.notifyIcon;
+    Snackbar.snackbar.appendChild(icon);
   }
 }
 
@@ -160,10 +160,10 @@ function addNotifyIcon(options) {
  */
 function addNotifyImage(options) {
   if (options.imgSrc) {
-    let $image = document.createElement('img');
-    $image.src = options.imgSrc;
-    $image.className = 'snackbar-icon';
-    Snackbar.snackbar.appendChild($image);
+    let image = document.createElement('img');
+    image.src = options.imgSrc;
+    image.className = 'snackbar-icon';
+    Snackbar.snackbar.appendChild(image);
   }
 }
 
