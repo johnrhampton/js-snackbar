@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {show} from '../../snackbar';
+import {show, ACTION_TYPE} from '../../snackbar';
 
 export default class App extends Component {
   constructor(props) {
@@ -29,13 +29,13 @@ export default class App extends Component {
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'center'}}>
-            <button onClick={this._showSnackBar.bind(this, {pos: 'top-center', actionType: 'TEXT'})}
+            <button onClick={this._showSnackBar.bind(this, {pos: 'top-center', actionType: ACTION_TYPE.TEXT})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Top Center
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'right'}}>
-            <button onClick={this._showSnackBar.bind(this, {pos: 'top-right', actionText: 'OK', actionType: 'TEXT'})}
+            <button onClick={this._showSnackBar.bind(this, {pos: 'top-right', actionText: 'OK', actionType: ACTION_TYPE.TEXT})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Top Right
             </button>
@@ -69,19 +69,19 @@ export default class App extends Component {
 
         <div className="mdl-grid">
           <div className="mdl-cell mdl-cell--4-col">
-            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Action Text', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', actionText: 'OK', actionType: 'TEXT'})}
+            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Action Text', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', actionText: 'OK', actionType: ACTION_TYPE.TEXT})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Custom Action Text
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'center'}}>
-            <button onClick={this._showSnackBar.bind(this, {text: 'Some Custom Text!', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', notifyIcon: 'face', actionType: 'CLOSE'})}
+            <button onClick={this._showSnackBar.bind(this, {text: 'Some Custom Text!', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', notifyIcon: 'face', actionType: ACTION_TYPE.CLOSE})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Custom w/ Icon
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'right'}}>
-            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Error Message!', pos: 'bottom-center', backgroundColor: '#F44336', actionType: 'NONE'})}
+            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Error Message!', pos: 'bottom-center', backgroundColor: '#F44336', actionType: ACTION_TYPE.NONE})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Custom w/ No Action
             </button>
