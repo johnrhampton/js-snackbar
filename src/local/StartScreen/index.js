@@ -69,7 +69,7 @@ export default class App extends Component {
 
         <div className="mdl-grid">
           <div className="mdl-cell mdl-cell--4-col">
-            <button onClick={this._showSnackBar.bind(this, {text: 'Some Custom Text!', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', notifyIcon: 'face', actionText: 'OK', actionType: 'TEXT'})}
+            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Action Text', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', actionText: 'OK', actionType: 'TEXT'})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Custom Action Text
             </button>
