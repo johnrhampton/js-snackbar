@@ -233,6 +233,7 @@ function postStyleAdjust(options) {
  * removes the current snackbar
  */
 function removeCurrent() {
-  let $parent = this.parentElement;
-  $parent && $parent.removeChild(this);
+  if (this.parentElement) {
+    this.parentElement.removeChild(this);
+  }
 }
