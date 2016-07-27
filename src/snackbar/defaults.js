@@ -12,7 +12,7 @@ export const SNACKBAR = {
   actionText: 'Dismiss',
   actionTextColor: '#ffffff',
   backgroundColor: '#323232',
-  pos: 'bottom-left',
+  pos: 'bottom-right',
   duration: 5000,
   customClass: '',
   notifyIcon: null, //'info_outline',
