@@ -172,14 +172,6 @@ function addNotifyImage(options) {
  */
 function displaySnackbar(options) {
   document.body.appendChild(Snackbar.snackbar);
-
-  /**
-   * gives the values of all the CSS properties of an element after applying the active
-   * stylesheets and resolving any basic computation those values may contain
-   */
-  var $bottom = getComputedStyle(Snackbar.snackbar).bottom;
-  var $top = getComputedStyle(Snackbar.snackbar).top;
-
   Snackbar.snackbar.style.opacity = 1;
   Snackbar.snackbar.className = 'snackbar-container ' + options.customClass + ' snackbar-pos ' + options.pos;
 }
@@ -231,6 +223,8 @@ function postStyleAdjust(options) {
     case 'bottom':
     case 'bottom-center':
       Snackbar.snackbar.style.bottom = '-39px';
+      break;
+    default:
       break;
   }
 }
