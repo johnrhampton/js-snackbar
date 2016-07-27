@@ -4,8 +4,8 @@
   "description": "Custom Material Design inspired SnackBar notifications",
   "main": "dist/snackbar.js",
   "scripts": {
-    "dev": "npm3 install && webpack-dev-server --config ./config/webpack.config.dev.js --content-base build/ --inline --hot",
-    "dist": "npm3 install && webpack --config ./config/webpack.config.dist.js"
+    "start": "npm3 install && webpack-dev-server --config ./config/webpack.config.dev.js --content-base build/ --inline --hot",
+    "build-dist": "npm3 install && webpack --config ./config/webpack.config.dist.js"
   },
   "devDependencies": {
     "autoprefixer": "6.3.7",
@@ -16,7 +16,6 @@
     "babel-plugin-syntax-trailing-function-commas": "6.8.0",
     "babel-plugin-transform-class-properties": "6.10.2",
     "babel-plugin-transform-object-rest-spread": "6.8.0",
-    "babel-plugin-transform-react-constant-elements": "6.9.1",
     "babel-plugin-transform-runtime": "^6.9.0",
     "babel-preset-es2015": "6.9.0",
     "babel-preset-es2016": "6.11.3",
