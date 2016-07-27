@@ -71,7 +71,7 @@ function addActionButton(options) {
       return appendTextButton(options);
     case ACTION_TYPE.CLOSE:
       return appendCloseButton(options);
-    case ACTION_TYPE.NONE:
+    default:
       break;
   }
 }
@@ -134,10 +134,10 @@ function buildInnerElement(options) {
   $p.innerHTML = options.text;
 
   // should we add notify icon
-  options.notifyIcon && !options.imgSrc && addNotifyIcon(options);
+  addNotifyIcon(options);
 
   // should we add an image
-  options.imgSrc && addNotifyImage(options);
+  addNotifyImage(options);
 
   Snackbar.snackbar.appendChild($p);
   Snackbar.snackbar.style.background = options.backgroundColor;
@@ -147,20 +147,24 @@ function buildInnerElement(options) {
  * add notify icon to inner element, override defaults
  */
 function addNotifyIcon(options) {
-  let $icon = document.createElement('i');
-  $icon.className = 'material-icons snackbar-icon';
-  $icon.innerHTML = options.notifyIcon;
-  Snackbar.snackbar.appendChild($icon);
+  if (options.notifyIcon && !options.imgSrc) {
+    let $icon = document.createElement('i');
+    $icon.className = 'material-icons snackbar-icon';
+    $icon.innerHTML = options.notifyIcon;
+    Snackbar.snackbar.appendChild($icon);
+  }
 }
 
 /**
  * add notify image to inner element, override defaults
  */
 function addNotifyImage(options) {
-  let $image = document.createElement('img');
-  $image.src = options.imgSrc;
-  $image.className = 'snackbar-icon';
-  Snackbar.snackbar.appendChild($image);
+  if (options.imgSrc) {
+    let $image = document.createElement('img');
+    $image.src = options.imgSrc;
+    $image.className = 'snackbar-icon';
+    Snackbar.snackbar.appendChild($image);
+  }
 }
 
 /**
