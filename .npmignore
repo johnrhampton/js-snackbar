@@ -7,6 +7,4 @@ node_modules/
 # local
 /build/
 /src/
-/.babelrc
-/webpack.config.js
-/webpack.deploy.config.js
+/config/
