@@ -78,8 +78,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.join(srcPath, 'local', 'index.html'),
-      favicon: ''
+      template: path.join(srcPath, 'local', 'index.html')
     }),
 
     new OpenBrowserPlugin({url: 'http://localhost:8080'}),
