@@ -46,18 +46,16 @@ Please note these are only required to use `notifyIcon = 'some_md_icon'` and `ac
 Global Dependencies:
 ```
 npm install -g npm3
- 
-npm3 install -g webpack webpack-dev-server
 ```
 
 Fire up the local server @ http://localhost:8080
 ```
-npm3 run dev
+npm start
 ```
 
-Build ouput in the `dist` folder
+Build distributable output in the `dist` folder
 ```
-npm3 run dist
+npm3 run build-dist
 ```
 
 ## Inspiration
