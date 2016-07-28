@@ -13,16 +13,19 @@ npm install js-snackbar
 require('../node_modules/js-snackbar/dist/snackbar.css');
 
 // import the show function
-import {show} from 'js-snackbar';
+import {show, ACTION_TYPE} from 'js-snackbar';
 
 // basic example
-show({text: 'My Message', pos: 'bottom-right'});
+show({text: 'My Message'});
 
 // add a custom class to override styles, use the icon close button, display a face notify icon
-show({text: 'Some Custom Text!', pos: 'top-right', customClass: 'custom-class', notifyIcon: 'face', actionType: 'CLOSE'});
+show({text: 'Some Custom Text!', pos: 'top-right', customClass: 'custom-class', notifyIcon: 'face', actionType: ACTION_TYPE.CLOSE});
 
 // override background
-show({text: 'Custom Error Message!', pos: 'bottom-center', backgroundColor: '#F44336'});
+show({text: 'Custom Error Message!', backgroundColor: '#F44336'});
+
+// override onActionClick
+show({text: 'Override!', actionType: ACTION_TYPE.TEXT, onActionClick: (element) => { element.style.opacity = 0; console.log('dang!'); }});
 ```
 
 Find additional examples in the [StartScreen component](https://github.com/johnrhampton/SnackBar/blob/master/src/local/StartScreen/index.js)
@@ -39,7 +42,61 @@ If your project is not already referencing these, you can add the following to t
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
 ```
 
-Please note these are only required to use `notifyIcon = 'some_md_icon'` and `actionType = 'CLOSE'`
+Please note these are only required to use `notifyIcon = 'some_md_icon'` and `actionType = ACTION_TYPE.CLOSE`
+
+## Configuration
+The following attributes can be customized
+
+```javascript
+{
+  // The SnackBar message to display
+  text: 'Default Text',
+  
+  // Color of the SnackBar text
+  textColor: '#ffffff',
+  
+  // The SnackBar container width
+  width: 'auto',
+  
+  /**
+   * The type of action button 
+   *  NONE: no button TEXT: text button CLOSE: close icon button
+   */
+  actionType: ACTION_TYPE.NONE,
+  
+  // Sets the button text when ACTION_TYPE.TEXT
+  actionText: 'Dismiss',
+  
+  // Color of the action text
+  actionTextColor: '#ffffff',
+  
+  // SnackBar background color
+  backgroundColor: '#323232',
+  
+  /**
+   * SnackBar display position
+   *   'bottom-left', 'bottom-center', 'bottom-right', 'top-left', 'top-center', 'top-right'
+   */ 
+  pos: 'bottom-right',
+  
+  // milliseconds to display the SnackBar
+  duration: 5000,
+  
+  // Class to apply to the SnackBar - this can be used to override all styles
+  customClass: '',
+  
+  // Material Design icon to display to the left of the SnackBar text
+  notifyIcon: null,
+  
+  // Url of an image to display to the left of the SnackBar text (beta)
+  imgSrc: null,
+  
+  // Invoked when the SnackBar action button is clicked
+  onActionClick: (element) => {
+    element.style.opacity = 0;
+  }
+}
+```
 
 ## Run Locally
 
