@@ -85,7 +85,9 @@ function appendTextButton(options) {
   actionButton.innerHTML = options.actionText;
   actionButton.style.color = options.actionTextColor;
 
-  actionButton.addEventListener('click', () => {
+  actionButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     options.onActionClick(Snackbar.snackbar);
   });
 
@@ -104,7 +106,9 @@ function appendCloseButton(options) {
   icon.innerHTML = 'close';
   closeButton.appendChild(icon);
 
-  closeButton.addEventListener('click', () => {
+  closeButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     options.onActionClick(Snackbar.snackbar);
   });
 
@@ -122,6 +126,8 @@ function buildContainerElement(options) {
   if(typeof options.onSnackbarClick === 'function'){
     Snackbar.snackbar.className += ' has-snackbar-action';
     Snackbar.snackbar.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
       options.onSnackbarClick(e);
     });
   }
