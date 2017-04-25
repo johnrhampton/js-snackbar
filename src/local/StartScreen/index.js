@@ -85,9 +85,33 @@ export default class App extends Component {
             </button>
           </div>
           <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'right'}}>
-            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Error Message!', backgroundColor: '#F44336', actionType: ACTION_TYPE.NONE, onSnackbarClick: this.handleSnackbarClick })}
+            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Error Message!', backgroundColor: '#F44336', actionType: ACTION_TYPE.NONE })}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Custom w/ No Action
+            </button>
+          </div>
+        </div>
+
+
+        <hr />
+
+        <div className="mdl-grid">
+          <div className="mdl-cell mdl-cell--4-col">
+            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Action Text', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', onSnackbarClick: this.handleSnackbarClick ,actionText: 'OK', actionType: ACTION_TYPE.TEXT})}
+                    className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+              Custom Action Text w/ Snackbar Action
+            </button>
+          </div>
+          <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'center'}}>
+            <button onClick={this._showSnackBar.bind(this, {text: 'Some Custom Text!', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', onSnackbarClick: this.handleSnackbarClick ,notifyIcon: 'face', actionType: ACTION_TYPE.CLOSE})}
+                    className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+              Custom w/ Icon w/ Snackbar Action
+            </button>
+          </div>
+          <div className="mdl-cell mdl-cell--4-col" style={{textAlign: 'right'}}>
+            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Error Message!', backgroundColor: '#F44336', actionType: ACTION_TYPE.NONE, onSnackbarClick: this.handleSnackbarClick })}
+                    className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+              Custom w/ No Action w/ Snackbar Action
             </button>
           </div>
         </div>
