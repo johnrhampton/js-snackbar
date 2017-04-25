@@ -17,6 +17,10 @@
   opacity: 0;
   z-index: 9999;
 
+  &.has-snackbar-action {
+    cursor: pointer;
+  }
+
   .action {
     background: inherit;
     display: inline-block;

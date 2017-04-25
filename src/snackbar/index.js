@@ -118,6 +118,13 @@ function buildContainerElement(options) {
   Snackbar.snackbar = document.createElement('div');
   Snackbar.snackbar.className = 'snackbar-container ' + options.customClass;
   Snackbar.snackbar.style.width = options.width;
+  
+  if(typeof options.onSnackbarClick === 'function'){
+    Snackbar.snackbar.className += ' has-snackbar-action';
+    Snackbar.snackbar.addEventListener('click', (e) => {
+      options.onSnackbarClick(e);
+    });
+  }
 }
 
 /**
@@ -182,7 +189,7 @@ function displaySnackbar(options) {
   var $top = getComputedStyle(Snackbar.snackbar).top;
 
   Snackbar.snackbar.style.opacity = 1;
-  Snackbar.snackbar.className = 'snackbar-container ' + options.customClass + ' snackbar-pos ' + options.pos;
+  Snackbar.snackbar.className += ' snackbar-pos ' + options.pos;
 }
 
 /**
