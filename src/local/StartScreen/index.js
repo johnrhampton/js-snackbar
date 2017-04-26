@@ -13,7 +13,11 @@ export default class App extends Component {
   }
   
   handleSnackbarClick(e){
-    show({pos: 'top-center', text: 'You triggered a full Snackbar click!'})
+    show({pos: 'top-center', text: 'You triggered a full Snackbar click!'});
+  }
+
+  handleTimeout(){
+    show({pos: 'top-center', text: 'The snackbar has timed out!'});
   }
  
   render() {
@@ -97,7 +101,7 @@ export default class App extends Component {
 
         <div className="mdl-grid">
           <div className="mdl-cell mdl-cell--4-col">
-            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Action Text', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', onSnackbarClick: this.handleSnackbarClick ,actionText: 'OK', actionType: ACTION_TYPE.TEXT})}
+            <button onClick={this._showSnackBar.bind(this, {text: 'Custom Action Text', pos: 'top-right', backgroundColor: 'rgb(68, 138, 255)', pauseOnHover: true, onTimeout: this.handleTimeout, onSnackbarClick: this.handleSnackbarClick ,actionText: 'OK', actionType: ACTION_TYPE.TEXT})}
                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
               Custom Action Text w/ Snackbar Action
             </button>

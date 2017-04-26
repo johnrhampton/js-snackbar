@@ -103,6 +103,11 @@ The following attributes can be customized
   onSnackbarClick: (element) => {
     element.style.opacity = 0;
   },
+
+  // Invoked when the SnackBar closed via timing out
+  onTimeout: (element) => {
+    alert('Snackbar closed due to timeout!');
+  },
 }
 ```
 
