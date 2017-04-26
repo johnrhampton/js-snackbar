@@ -94,7 +94,12 @@ The following attributes can be customized
   // Invoked when the SnackBar action button is clicked
   onActionClick: (element) => {
     element.style.opacity = 0;
-  }
+  },
+
+  // Invoked when the SnackBar itself is clicked
+  onSnackbarClick: (element) => {
+    element.style.opacity = 0;
+  },
 }
 ```
 
