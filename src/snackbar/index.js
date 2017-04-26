@@ -44,7 +44,7 @@ function show(custom_options) {
   addActionButton(options);
 
   // hide current - delayed by options.duration
-  setTimeout(handleHideCurrent.bind(Snackbar.snackbar), options.duration);
+  delayWithHoverPaws(handleHideCurrent.bind(Snackbar.snackbar), Snackbar.snackbar, options);
 
   // add transition end handler
   Snackbar.snackbar.addEventListener('transitionend', handleTransitioned.bind(Snackbar.snackbar));
@@ -60,6 +60,29 @@ function show(custom_options) {
 
   // adjust style after appending to body
   postStyleAdjust(options);
+}
+
+/**
+ * Run method at end of duration BUT allow mouseover to reset timeout
+ */
+function delayWithHoverPaws(method, element, options){
+  var timeoutID;
+
+  // start delayed function call
+  timeoutID = setTimeout(method, options.duration);
+
+  if(options.pauseOnHover){
+    element.addEventListener('mouseover', function () {
+        clearTimeout(timeoutID);
+        timeoutID = null;
+    });
+
+    element.addEventListener('mouseout', function () {
+        timeoutID = setTimeout(method, options.duration);
+    });
+
+  }
+
 }
 
 /**

@@ -81,6 +81,9 @@ The following attributes can be customized
   
   // milliseconds to display the SnackBar
   duration: 5000,
+
+  // pause and restart duration after mouse hover
+  pauseOnHover: false,
   
   // Class to apply to the SnackBar - this can be used to override all styles
   customClass: '',
