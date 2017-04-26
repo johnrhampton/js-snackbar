@@ -155,12 +155,11 @@ function buildContainerElement(options) {
     });
   }
 
-  if(typeof options.onTimeout === 'function'){
+  if(typeof options.onTimeout === 'function') {
     Snackbar.snackbar.addEventListener('timeout', () => {
       options.onTimeout();
     });
   }
-
 }
 
 /**
