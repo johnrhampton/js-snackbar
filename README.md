@@ -32,7 +32,7 @@ Find additional examples in the [StartScreen component](https://github.com/johnr
 
 ## Requirements
 In order to display the _notify icons_ and _icon close button_, we rely on Material Design icons, Google fonts, and Material Design Lite stylesheets.
- 
+
 If your project is not already referencing these, you can add the following to the `<head>` section of your `index.html` file.
 
 ```javascript
@@ -51,49 +51,49 @@ The following attributes can be customized
 {
   // The SnackBar message to display
   text: 'Default Text',
-  
+
   // Color of the SnackBar text
   textColor: '#ffffff',
-  
+
   // The SnackBar container width
   width: 'auto',
-  
+
   /**
-   * The type of action button 
+   * The type of action button
    *  NONE: no button TEXT: text button CLOSE: close icon button
    */
   actionType: ACTION_TYPE.NONE,
-  
+
   // Sets the button text when ACTION_TYPE.TEXT
   actionText: 'Dismiss',
-  
+
   // Color of the action text
   actionTextColor: '#ffffff',
-  
+
   // SnackBar background color
   backgroundColor: '#323232',
-  
+
   /**
    * SnackBar display position
    *   'bottom-left', 'bottom-center', 'bottom-right', 'top-left', 'top-center', 'top-right'
-   */ 
+   */
   pos: 'bottom-right',
-  
+
   // milliseconds to display the SnackBar
   duration: 5000,
 
   // pause and restart duration after mouse hover
   pauseOnHover: false,
-  
+
   // Class to apply to the SnackBar - this can be used to override all styles
   customClass: '',
-  
+
   // Material Design icon to display to the left of the SnackBar text
   notifyIcon: null,
-  
+
   // Url of an image to display to the left of the SnackBar text (beta)
   imgSrc: null,
-  
+
   // Invoked when the SnackBar action button is clicked
   onActionClick: (element) => {
     element.style.opacity = 0;
@@ -113,19 +113,16 @@ The following attributes can be customized
 
 ## Run Locally
 
-Global Dependencies:
-```
-npm install -g npm3
-```
+Install [Yarn](https://yarnpkg.com/en/)
 
 Fire up the local server @ http://localhost:8080
 ```
-npm start
+yarn start
 ```
 
 Build distributable output in the `dist` folder
 ```
-npm3 run build-dist
+yarn run build
 ```
 
 ## Inspiration
