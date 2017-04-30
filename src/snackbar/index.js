@@ -154,6 +154,12 @@ function buildContainerElement(options) {
       options.onSnackbarClick(e);
     });
   }
+
+  if(typeof options.onTimeout === 'function') {
+    Snackbar.snackbar.addEventListener('timeout', () => {
+      options.onTimeout();
+    });
+  }
 }
 
 /**
@@ -240,6 +246,9 @@ function handleTransitioned(event, elapsed) {
 function handleHideCurrent() {
   if (Snackbar.current === this) {
     Snackbar.current.style.opacity = 0;
+
+    Snackbar.current.dispatchEvent(new Event('timeout'));
+    
   }
 }
 
