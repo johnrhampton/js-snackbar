@@ -4,8 +4,8 @@
   "description": "Custom Material Design inspired SnackBar notifications",
   "main": "dist/snackbar.js",
   "scripts": {
-    "start": "npm3 install && webpack-dev-server --config ./config/webpack.config.dev.js --content-base build/ --inline --hot",
-    "build-dist": "npm3 install && webpack --config ./config/webpack.config.dist.js"
+    "start": "webpack-dev-server --config ./config/webpack.config.dev.js --content-base build/ --inline --hot",
+    "build": "webpack --config ./config/webpack.config.dist.js"
   },
   "devDependencies": {
     "autoprefixer": "6.3.7",
@@ -22,10 +22,12 @@
     "babel-preset-react": "6.11.1",
     "babel-preset-react-hmre": "^1.1.1",
     "css-loader": "^0.23.1",
-    "eslint": "^3.0.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
     "eslint-loader": "^1.4.1",
-    "eslint-plugin-import": "1.10.3",
-    "eslint-plugin-react": "5.2.2",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "2.22.0",
