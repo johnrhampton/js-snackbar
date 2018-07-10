@@ -1,6 +1,6 @@
 {
   "name": "js-snackbar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Custom Material Design inspired SnackBar notifications",
   "main": "index.js",
   "scripts": {
