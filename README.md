@@ -4,9 +4,7 @@ Custom SnackBar notifications inspired by Material Design and [node-snackbar](ht
 
 ## Installation
 
-```
-npm install js-snackbar
-```
+`$ npm install js-snackbar -P`
 
 ## Usage
 
@@ -40,7 +38,7 @@ show({
 });
 ```
 
-Find additional examples in the [StartScreen component](https://github.com/johnrhampton/SnackBar/blob/master/src/local/StartScreen/index.js)
+Find additional examples in [src/App.js](https://github.com/johnrhampton/SnackBar/blob/master/src/App.js)
 
 ## Requirements
 
