@@ -38,7 +38,7 @@ show({
 });
 ```
 
-Find additional examples in [src/App.js](https://github.com/johnrhampton/SnackBar/blob/master/src/App.js)
+Find additional examples in [src/App.js](https://github.com/johnrhampton/js-snackbar/blob/master/src/App.js)
 
 ## Requirements
 
