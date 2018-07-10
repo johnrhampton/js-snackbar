@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run build-src-css && cp ./index.js src/snackbar.js && react-scripts start",
     "build-css": "node-sass snackbar.scss -o ./",
-    "build-src-css": "node-sass snackbar.scss -o src/"
+    "build-src-css": "node-sass snackbar.scss -o src/",
+    "prepublish": "npm run build-css"
   },
   "devDependencies": {
     "eslint": "5.1.0",
