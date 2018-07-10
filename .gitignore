@@ -12,7 +12,6 @@ node_modules/
 yarn.lock
 
 # ignore css - we keep scss in git
-src/**/*.css
-
+snackbar.css
 src/snackbar.js
 src/snackbar.css
