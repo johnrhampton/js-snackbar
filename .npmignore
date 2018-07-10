@@ -3,8 +3,10 @@ node_modules/
 
 # ide
 .idea/
+.vscode/
 
 # local
-/build/
-/src/
-/config/
+src/
+public/
+.eslintrc
+snackbar.scss

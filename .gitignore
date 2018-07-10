@@ -3,6 +3,16 @@ node_modules/
 
 # ide
 .idea/
+.vscode/
 
 # local
 /build/
+
+# dependencies
+yarn.lock
+
+# ignore css - we keep scss in git
+src/**/*.css
+
+src/snackbar.js
+src/snackbar.css

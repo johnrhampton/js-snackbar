@@ -1,20 +1,39 @@
-import {ACTION_TYPE, SNACKBAR, INNER_ELEMENT} from './defaults';
+const ACTION_TYPE = {
+  TEXT: 'TEXT',
+  CLOSE: 'CLOSE',
+  NONE: 'NONE',
+};
 
-// require main stylesheet
-require('../assets/styles/snackbar.scss');
+const SNACKBAR = {
+  text: 'Default Text',
+  textColor: '#ffffff',
+  width: 'auto',
+  actionType: ACTION_TYPE.NONE,
+  actionText: 'Dismiss',
+  actionTextColor: '#ffffff',
+  backgroundColor: '#323232',
+  pos: 'bottom-right',
+  duration: 5000,
+  customClass: '',
+  notifyIcon: null,
+  imgSrc: null,
+  onActionClick: element => {
+    element.style.opacity = 0;
+  },
+};
+
+const INNER_ELEMENT = {
+  margin: 0,
+  padding: 0,
+  fontSize: '14px',
+  fontWeight: 300,
+  lineHeight: '1em',
+};
+
+const Snackbar = { current: null };
 
 /**
- * functions to export
- */
-export {show, hide, ACTION_TYPE};
-
-/**
- * define Snackbar object
- */
-let Snackbar = {current: null};
-
-/**
- * hide current snackbar
+ * Hides a description
  */
 function hide() {
   if (Snackbar.current) {
@@ -23,10 +42,10 @@ function hide() {
 }
 
 /**
- * show current snackbar
+ * Shows the snackbar
  */
-function show(custom_options) {
-  var options = Object.assign({}, SNACKBAR, custom_options);
+function show(customOptions) {
+  const options = Object.assign({}, SNACKBAR, customOptions);
 
   // remove current snackbar
   if (Snackbar.current) {
@@ -65,24 +84,22 @@ function show(custom_options) {
 /**
  * Run method at end of duration BUT allow mouseover to reset timeout
  */
-function delayWithHoverPaws(method, element, options){
-  var timeoutID;
+function delayWithHoverPaws(method, element, options) {
+  let timeoutID;
 
   // start delayed function call
   timeoutID = setTimeout(method, options.duration);
 
-  if(options.pauseOnHover){
-    element.addEventListener('mouseover', function () {
-        clearTimeout(timeoutID);
-        timeoutID = null;
+  if (options.pauseOnHover) {
+    element.addEventListener('mouseover', () => {
+      clearTimeout(timeoutID);
+      timeoutID = null;
     });
 
-    element.addEventListener('mouseout', function () {
-        timeoutID = setTimeout(method, options.duration);
+    element.addEventListener('mouseout', () => {
+      timeoutID = setTimeout(method, options.duration);
     });
-
   }
-
 }
 
 /**
@@ -103,12 +120,12 @@ function addActionButton(options) {
  * add text action button
  */
 function appendTextButton(options) {
-  let actionButton = document.createElement('button');
+  const actionButton = document.createElement('button');
   actionButton.className = 'action';
   actionButton.innerHTML = options.actionText;
   actionButton.style.color = options.actionTextColor;
 
-  actionButton.addEventListener('click', (e) => {
+  actionButton.addEventListener('click', e => {
     e.stopPropagation();
     e.preventDefault();
     options.onActionClick(Snackbar.snackbar);
@@ -121,15 +138,15 @@ function appendTextButton(options) {
  * add icon action button
  */
 function appendCloseButton(options) {
-  let closeButton = document.createElement('button');
+  const closeButton = document.createElement('button');
   closeButton.className = 'mdl-button mdl-js-button mdl-button--icon snackbar-close-button';
 
-  let icon = document.createElement('i');
+  const icon = document.createElement('i');
   icon.className = 'material-icons';
   icon.innerHTML = 'close';
   closeButton.appendChild(icon);
 
-  closeButton.addEventListener('click', (e) => {
+  closeButton.addEventListener('click', e => {
     e.stopPropagation();
     e.preventDefault();
     options.onActionClick(Snackbar.snackbar);
@@ -143,19 +160,19 @@ function appendCloseButton(options) {
  */
 function buildContainerElement(options) {
   Snackbar.snackbar = document.createElement('div');
-  Snackbar.snackbar.className = 'snackbar-container ' + options.customClass;
+  Snackbar.snackbar.className = `snackbar-container ${options.customClass}`;
   Snackbar.snackbar.style.width = options.width;
-  
-  if(typeof options.onSnackbarClick === 'function'){
+
+  if (typeof options.onSnackbarClick === 'function') {
     Snackbar.snackbar.className += ' has-snackbar-action';
-    Snackbar.snackbar.addEventListener('click', (e) => {
+    Snackbar.snackbar.addEventListener('click', e => {
       e.stopPropagation();
       e.preventDefault();
       options.onSnackbarClick(e);
     });
   }
 
-  if(typeof options.onTimeout === 'function') {
+  if (typeof options.onTimeout === 'function') {
     Snackbar.snackbar.addEventListener('timeout', () => {
       options.onTimeout();
     });
@@ -166,7 +183,7 @@ function buildContainerElement(options) {
  * build Snackbar inner element
  */
 function buildInnerElement(options) {
-  var p = document.createElement('p');
+  const p = document.createElement('p');
   p.style.margin = INNER_ELEMENT.margin;
   p.style.padding = INNER_ELEMENT.padding;
   p.style.color = options.textColor;
@@ -190,7 +207,7 @@ function buildInnerElement(options) {
  */
 function addNotifyIcon(options) {
   if (options.notifyIcon && !options.imgSrc) {
-    let icon = document.createElement('i');
+    const icon = document.createElement('i');
     icon.className = 'material-icons snackbar-icon';
     icon.innerHTML = options.notifyIcon;
     Snackbar.snackbar.appendChild(icon);
@@ -202,7 +219,7 @@ function addNotifyIcon(options) {
  */
 function addNotifyImage(options) {
   if (options.imgSrc) {
-    let image = document.createElement('img');
+    const image = document.createElement('img');
     image.src = options.imgSrc;
     image.className = 'snackbar-icon';
     Snackbar.snackbar.appendChild(image);
@@ -220,11 +237,11 @@ function displaySnackbar(options) {
    * stylesheets and resolving any basic computation those values may contain
    */
 
-  var $bottom = getComputedStyle(Snackbar.snackbar).bottom;
-  var $top = getComputedStyle(Snackbar.snackbar).top;
+  const $bottom = getComputedStyle(Snackbar.snackbar).bottom;
+  const $top = getComputedStyle(Snackbar.snackbar).top;
 
   Snackbar.snackbar.style.opacity = 1;
-  Snackbar.snackbar.className += ' snackbar-pos ' + options.pos;
+  Snackbar.snackbar.className += ` snackbar-pos ${options.pos}`;
 }
 
 /**
@@ -248,7 +265,6 @@ function handleHideCurrent() {
     Snackbar.current.style.opacity = 0;
 
     Snackbar.current.dispatchEvent(new Event('timeout'));
-    
   }
 }
 
@@ -291,3 +307,5 @@ function removeCurrent() {
     this.parentElement.removeChild(this);
   }
 }
+
+export { show, hide, ACTION_TYPE };
