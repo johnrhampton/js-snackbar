@@ -17,7 +17,7 @@ const SNACKBAR = {
   customClass: '',
   notifyIcon: null,
   imgSrc: null,
-  onActionClick: element => {
+  onActionClick: function (element) {
     element.style.opacity = 0;
   },
 };
@@ -85,19 +85,19 @@ function show(customOptions) {
  * Run method at end of duration BUT allow mouseover to reset timeout
  */
 function delayWithHoverPaws(method, element, options) {
-  let timeoutID;
+  var timeoutId;
 
   // start delayed function call
-  timeoutID = setTimeout(method, options.duration);
+  timeoutId = setTimeout(method, options.duration);
 
   if (options.pauseOnHover) {
-    element.addEventListener('mouseover', () => {
-      clearTimeout(timeoutID);
-      timeoutID = null;
+    element.addEventListener('mouseover', function() {
+      clearTimeout(timeoutId);
+      timeoutId = null;
     });
 
-    element.addEventListener('mouseout', () => {
-      timeoutID = setTimeout(method, options.duration);
+    element.addEventListener('mouseout', function() {
+      timeoutId = setTimeout(method, options.duration);
     });
   }
 }
@@ -125,7 +125,7 @@ function appendTextButton(options) {
   actionButton.innerHTML = options.actionText;
   actionButton.style.color = options.actionTextColor;
 
-  actionButton.addEventListener('click', e => {
+  actionButton.addEventListener('click', function(e) {
     e.stopPropagation();
     e.preventDefault();
     options.onActionClick(Snackbar.snackbar);
@@ -146,7 +146,7 @@ function appendCloseButton(options) {
   icon.innerHTML = 'close';
   closeButton.appendChild(icon);
 
-  closeButton.addEventListener('click', e => {
+  closeButton.addEventListener('click', function(e) {
     e.stopPropagation();
     e.preventDefault();
     options.onActionClick(Snackbar.snackbar);
@@ -160,12 +160,12 @@ function appendCloseButton(options) {
  */
 function buildContainerElement(options) {
   Snackbar.snackbar = document.createElement('div');
-  Snackbar.snackbar.className = `snackbar-container ${options.customClass}`;
+  Snackbar.snackbar.className = 'snackbar-container ' + options.customClass;
   Snackbar.snackbar.style.width = options.width;
 
   if (typeof options.onSnackbarClick === 'function') {
     Snackbar.snackbar.className += ' has-snackbar-action';
-    Snackbar.snackbar.addEventListener('click', e => {
+    Snackbar.snackbar.addEventListener('click', function(e) {
       e.stopPropagation();
       e.preventDefault();
       options.onSnackbarClick(e);
@@ -173,7 +173,7 @@ function buildContainerElement(options) {
   }
 
   if (typeof options.onTimeout === 'function') {
-    Snackbar.snackbar.addEventListener('timeout', () => {
+    Snackbar.snackbar.addEventListener('timeout', function() {
       options.onTimeout();
     });
   }
@@ -241,7 +241,7 @@ function displaySnackbar(options) {
   const $top = getComputedStyle(Snackbar.snackbar).top;
 
   Snackbar.snackbar.style.opacity = 1;
-  Snackbar.snackbar.className += ` snackbar-pos ${options.pos}`;
+  Snackbar.snackbar.className += ' snackbar-pos ' + options.pos;
 }
 
 /**
