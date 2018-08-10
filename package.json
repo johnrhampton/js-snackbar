@@ -7,17 +7,17 @@
     "start": "npm run build-src-css && cp ./index.js src/snackbar.js && react-scripts start",
     "build-css": "node-sass snackbar.scss -o ./",
     "build-src-css": "node-sass snackbar.scss -o src/",
-    "prepublish": "npm run build-css"
+    "prepublishOnly": "npm run build-css"
   },
   "devDependencies": {
-    "eslint": "5.1.0",
+    "eslint": "5.3.0",
     "eslint-config-airbnb": "17.0.0",
     "eslint-plugin-import": "2.13.0",
-    "eslint-plugin-jsx-a11y": "6.1.0",
+    "eslint-plugin-jsx-a11y": "6.1.1",
     "eslint-plugin-react": "7.10.0",
-    "node-sass": "4.9.2",
-    "react": "16.4.1",
-    "react-dom": "16.4.1",
+    "node-sass": "4.9.3",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
     "react-scripts": "1.1.4"
   },
   "repository": {
