@@ -1,9 +1,30 @@
+// snackbar button action types
 const ACTION_TYPE = {
   TEXT: 'TEXT',
   CLOSE: 'CLOSE',
   NONE: 'NONE',
 };
 
+// snackbar inner element styles
+const INNER_ELEMENT = {
+  margin: 0,
+  padding: 0,
+  fontSize: '14px',
+  fontWeight: 300,
+  lineHeight: '1em',
+};
+
+/**
+ * Event handler for action button clicks
+ * @param  {object} element - Snackbar HTML element
+ * @return {void}
+ */
+function actionClickHandler(element) {
+  // eslint-disable-next-line no-param-reassign
+  element.style.opacity = 0;
+}
+
+// snackbar default options
 const SNACKBAR = {
   text: 'Default Text',
   textColor: '#ffffff',
@@ -17,23 +38,15 @@ const SNACKBAR = {
   customClass: '',
   notifyIcon: null,
   imgSrc: null,
-  onActionClick: function (element) {
-    element.style.opacity = 0;
-  },
+  onActionClick: actionClickHandler,
 };
 
-const INNER_ELEMENT = {
-  margin: 0,
-  padding: 0,
-  fontSize: '14px',
-  fontWeight: 300,
-  lineHeight: '1em',
-};
-
+// define Snackbar object
 const Snackbar = { current: null };
 
 /**
- * Hides a description
+ * Hides the snackbar
+ * @return {void}
  */
 function hide() {
   if (Snackbar.current) {
@@ -42,168 +55,19 @@ function hide() {
 }
 
 /**
- * Shows the snackbar
+ * Removes the snackbar from the parent element
+ * @return {void}
  */
-function show(customOptions) {
-  const options = Object.assign({}, SNACKBAR, customOptions);
-
-  // remove current snackbar
-  if (Snackbar.current) {
-    Snackbar.current.style.opacity = 0;
-    setTimeout(removeCurrent.bind(Snackbar.current), 500);
-  }
-
-  // build snackbar container
-  buildContainerElement(options);
-
-  // build inner snackbar element
-  buildInnerElement(options);
-
-  // conditionally add action button
-  addActionButton(options);
-
-  // hide current - delayed by options.duration
-  delayWithHoverPaws(handleHideCurrent.bind(Snackbar.snackbar), Snackbar.snackbar, options);
-
-  // add transition end handler
-  Snackbar.snackbar.addEventListener('transitionend', handleTransitioned.bind(Snackbar.snackbar));
-
-  // set current snackbar
-  Snackbar.current = Snackbar.snackbar;
-
-  // adjust style prior to appending to body
-  preStyleAdjust(options);
-
-  // append to body, set opacity and class
-  displaySnackbar(options);
-
-  // adjust style after appending to body
-  postStyleAdjust(options);
-}
-
-/**
- * Run method at end of duration BUT allow mouseover to reset timeout
- */
-function delayWithHoverPaws(method, element, options) {
-  var timeoutId;
-
-  // start delayed function call
-  timeoutId = setTimeout(method, options.duration);
-
-  if (options.pauseOnHover) {
-    element.addEventListener('mouseover', function() {
-      clearTimeout(timeoutId);
-      timeoutId = null;
-    });
-
-    element.addEventListener('mouseout', function() {
-      timeoutId = setTimeout(method, options.duration);
-    });
+function removeCurrent() {
+  if (this.parentElement) {
+    this.parentElement.removeChild(this);
   }
 }
 
 /**
- * conditionally add an action button
- */
-function addActionButton(options) {
-  switch (options.actionType) {
-    case ACTION_TYPE.TEXT:
-      return appendTextButton(options);
-    case ACTION_TYPE.CLOSE:
-      return appendCloseButton(options);
-    default:
-      break;
-  }
-}
-
-/**
- * add text action button
- */
-function appendTextButton(options) {
-  const actionButton = document.createElement('button');
-  actionButton.className = 'action';
-  actionButton.innerHTML = options.actionText;
-  actionButton.style.color = options.actionTextColor;
-
-  actionButton.addEventListener('click', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    options.onActionClick(Snackbar.snackbar);
-  });
-
-  Snackbar.snackbar.appendChild(actionButton);
-}
-
-/**
- * add icon action button
- */
-function appendCloseButton(options) {
-  const closeButton = document.createElement('button');
-  closeButton.className = 'mdl-button mdl-js-button mdl-button--icon snackbar-close-button';
-
-  const icon = document.createElement('i');
-  icon.className = 'material-icons';
-  icon.innerHTML = 'close';
-  closeButton.appendChild(icon);
-
-  closeButton.addEventListener('click', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    options.onActionClick(Snackbar.snackbar);
-  });
-
-  Snackbar.snackbar.appendChild(closeButton);
-}
-
-/**
- * build Snackbar container element
- */
-function buildContainerElement(options) {
-  Snackbar.snackbar = document.createElement('div');
-  Snackbar.snackbar.className = 'snackbar-container ' + options.customClass;
-  Snackbar.snackbar.style.width = options.width;
-
-  if (typeof options.onSnackbarClick === 'function') {
-    Snackbar.snackbar.className += ' has-snackbar-action';
-    Snackbar.snackbar.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      options.onSnackbarClick(e);
-    });
-  }
-
-  if (typeof options.onTimeout === 'function') {
-    Snackbar.snackbar.addEventListener('timeout', function() {
-      options.onTimeout();
-    });
-  }
-}
-
-/**
- * build Snackbar inner element
- */
-function buildInnerElement(options) {
-  const p = document.createElement('p');
-  p.style.margin = INNER_ELEMENT.margin;
-  p.style.padding = INNER_ELEMENT.padding;
-  p.style.color = options.textColor;
-  p.style.fontSize = INNER_ELEMENT.fontSize;
-  p.style.fontWeight = INNER_ELEMENT.fontWeight;
-  p.style.lineHeight = INNER_ELEMENT.lineHeight;
-  p.innerHTML = options.text;
-
-  // should we add notify icon
-  addNotifyIcon(options);
-
-  // should we add an image
-  addNotifyImage(options);
-
-  Snackbar.snackbar.appendChild(p);
-  Snackbar.snackbar.style.background = options.backgroundColor;
-}
-
-/**
- * add notify icon to inner element, override defaults
+ * Add notify icon to the inner element, override defaults
+ * @param  {object} options - Custom options
+ * @return {void}
  */
 function addNotifyIcon(options) {
   if (options.notifyIcon && !options.imgSrc) {
@@ -215,7 +79,9 @@ function addNotifyIcon(options) {
 }
 
 /**
- * add notify image to inner element, override defaults
+ * Add notify image to inner element, override defaults
+ * @param  {object} options - Custom options
+ * @return {void}
  */
 function addNotifyImage(options) {
   if (options.imgSrc) {
@@ -227,17 +93,170 @@ function addNotifyImage(options) {
 }
 
 /**
- * append to body, set opacity to 1, set classes
+ * Builds the snackbar container element
+ * @param  {object} options - Custom options
+ * @return {void}
+ */
+function buildContainerElement(options) {
+  Snackbar.snackbar = document.createElement('div');
+  Snackbar.snackbar.className = 'snackbar-container ' + options.customClass;
+  Snackbar.snackbar.style.width = options.width;
+
+  // snackbar click event handler
+  function snackbarClickHandler(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    options.onSnackbarClick(e);
+  }
+
+  // timeout event handler
+  function timeoutHandler() {
+    options.onTimeout();
+  }
+
+  if (typeof options.onSnackbarClick === 'function') {
+    Snackbar.snackbar.className += ' has-snackbar-action';
+    Snackbar.snackbar.addEventListener('click', snackbarClickHandler);
+  }
+
+  if (typeof options.onTimeout === 'function') {
+    Snackbar.snackbar.addEventListener('timeout', timeoutHandler);
+  }
+}
+
+/**
+ * Build snackbar inner element
+ * @param  {object} options - Custom options
+ * @return {void}
+ */
+function buildInnerElement(options) {
+  const p = document.createElement('p');
+  p.style.margin = INNER_ELEMENT.margin;
+  p.style.padding = INNER_ELEMENT.padding;
+  p.style.color = options.textColor;
+  p.style.fontSize = INNER_ELEMENT.fontSize;
+  p.style.fontWeight = INNER_ELEMENT.fontWeight;
+  p.style.lineHeight = INNER_ELEMENT.lineHeight;
+  p.innerHTML = options.text;
+
+  // potentially add notify icon
+  addNotifyIcon(options);
+
+  // potentially add image
+  addNotifyImage(options);
+
+  Snackbar.snackbar.appendChild(p);
+  Snackbar.snackbar.style.background = options.backgroundColor;
+}
+
+/**
+ * Add text action button
+ * @param  {object} options - Custom options
+ * @return {void}
+ */
+function appendTextButton(options) {
+  const actionButton = document.createElement('button');
+  actionButton.className = 'action';
+  actionButton.innerHTML = options.actionText;
+  actionButton.style.color = options.actionTextColor;
+
+  // action button click event handler
+  function textButtonClickHandler(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    options.onActionClick(Snackbar.snackbar);
+  }
+
+  actionButton.addEventListener('click', textButtonClickHandler);
+
+  Snackbar.snackbar.appendChild(actionButton);
+}
+
+/**
+ * Add icon action button
+ * @param  {object} options - Custom options
+ * @return {void}
+ */
+function appendCloseButton(options) {
+  const closeButton = document.createElement('button');
+  closeButton.className = 'mdl-button mdl-js-button mdl-button--icon snackbar-close-button';
+
+  const icon = document.createElement('i');
+  icon.className = 'material-icons';
+  icon.innerHTML = 'close';
+  closeButton.appendChild(icon);
+
+  // icon button click event handler
+  function iconButtonClickHandler(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    options.onActionClick(Snackbar.snackbar);
+  }
+
+  closeButton.addEventListener('click', iconButtonClickHandler);
+
+  Snackbar.snackbar.appendChild(closeButton);
+}
+
+/**
+ * Conditionally add an action button
+ * @param  {object} options - Custom options
+ * @return {void}
+ */
+function addActionButton(options) {
+  switch (options.actionType) {
+    case ACTION_TYPE.TEXT:
+      return appendTextButton(options);
+    case ACTION_TYPE.CLOSE:
+      return appendCloseButton(options);
+    default:
+      return null;
+  }
+}
+
+/**
+ * Run method at end of duration BUT allow mouseover to reset timeout
+ * @param  {function} method  - Function to invoke on duration end
+ * @param  {object} element   - Snackbar HTML element
+ * @param  {object} options   - Custom options
+ * @return {void}
+ */
+function delayWithHoverPause(method, element, options) {
+  var timeoutId; // eslint-disable-line no-var
+
+  // start delayed function call
+  timeoutId = setTimeout(method, options.duration);
+
+  // mouse over event handler
+  function mouseOverHandler() {
+    clearTimeout(timeoutId);
+    timeoutId = null;
+  }
+
+  // mouse out event handler
+  function mouseOutEventHanlder() {
+    timeoutId = setTimeout(method, options.duration);
+  }
+
+  if (options.pauseOnHover) {
+    element.addEventListener('mouseover', mouseOverHandler);
+    element.addEventListener('mouseout', mouseOutEventHanlder);
+  }
+}
+
+/**
+ * Appends the snackbar to the body, sets opacity to 1, sets class names
+ * @param  {object} options - Custom options
+ * @return {void}
  */
 function displaySnackbar(options) {
   document.body.appendChild(Snackbar.snackbar);
 
-  /**
-   * gives the values of all the CSS properties of an element after applying the active
-   * stylesheets and resolving any basic computation those values may contain
-   */
-
+  // gives the values of all the CSS properties of an element after applying the active
+  // stylesheets and resolving any basic computation those values may contain
+  // eslint-disable-next-line no-unused-vars
   const $bottom = getComputedStyle(Snackbar.snackbar).bottom;
+  // eslint-disable-next-line no-unused-vars
   const $top = getComputedStyle(Snackbar.snackbar).top;
 
   Snackbar.snackbar.style.opacity = 1;
@@ -245,9 +264,22 @@ function displaySnackbar(options) {
 }
 
 /**
- * transitioned callback
+ * Hides the current snackbar, invoked after options.duration
+ * @return {void}
  */
-function handleTransitioned(event, elapsed) {
+function handleHideCurrent() {
+  if (Snackbar.current === this) {
+    Snackbar.current.style.opacity = 0;
+    Snackbar.current.dispatchEvent(new Event('timeout'));
+  }
+}
+
+/**
+ * Handles transition events
+ * @param  {object} event - Raised event
+ * @return {void}
+ */
+function handleTransitioned(event) {
   if (event.propertyName === 'opacity' && this.style.opacity === '0') {
     this.parentElement.removeChild(this);
 
@@ -258,18 +290,9 @@ function handleTransitioned(event, elapsed) {
 }
 
 /**
- * hide current snackbar - invoked after options.duration
- */
-function handleHideCurrent() {
-  if (Snackbar.current === this) {
-    Snackbar.current.style.opacity = 0;
-
-    Snackbar.current.dispatchEvent(new Event('timeout'));
-  }
-}
-
-/**
- * adjust style prior to appending to body
+ * Adjust styles prior to appending to body
+ * @param  {object} options - Custom options
+ * @return {void}
  */
 function preStyleAdjust(options) {
   if (options.pos.includes('top')) {
@@ -278,7 +301,9 @@ function preStyleAdjust(options) {
 }
 
 /**
- * adjust style after appending to body
+ * Adjust style after appending to body
+ * @param  {object} options - Custom options
+ * @return {void}
  */
 function postStyleAdjust(options) {
   switch (options.pos) {
@@ -300,12 +325,45 @@ function postStyleAdjust(options) {
 }
 
 /**
- * removes the current snackbar
+ * Shows the snackbar by appending to the DOM
+ * @param  {object} customOptions - Options to apply to this snackbar
+ * @return {void}
  */
-function removeCurrent() {
-  if (this.parentElement) {
-    this.parentElement.removeChild(this);
+function show(customOptions) {
+  const options = Object.assign({}, SNACKBAR, customOptions);
+
+  // remove current snackbar
+  if (Snackbar.current) {
+    Snackbar.current.style.opacity = 0;
+    setTimeout(removeCurrent.bind(Snackbar.current), 500);
   }
+
+  // build snackbar container
+  buildContainerElement(options);
+
+  // build inner snackbar element
+  buildInnerElement(options);
+
+  // conditionally add action button
+  addActionButton(options);
+
+  // hide current - delayed by options.duration
+  delayWithHoverPause(handleHideCurrent.bind(Snackbar.snackbar), Snackbar.snackbar, options);
+
+  // add transition end handler
+  Snackbar.snackbar.addEventListener('transitionend', handleTransitioned.bind(Snackbar.snackbar));
+
+  // set current snackbar
+  Snackbar.current = Snackbar.snackbar;
+
+  // adjust style prior to appending to body
+  preStyleAdjust(options);
+
+  // append to body, set opacity and class
+  displaySnackbar(options);
+
+  // adjust style after appending to body
+  postStyleAdjust(options);
 }
 
 export { show, hide, ACTION_TYPE };
