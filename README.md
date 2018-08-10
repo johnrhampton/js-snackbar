@@ -125,7 +125,7 @@ The following attributes can be customized
 
 ## Run Locally
 
-start local server @ http://localhost:8080
+start local server @ http://localhost:8080. The start script copies the `index.js` file to `src/snackbar.js`.
 
 `$ npm start`
 
