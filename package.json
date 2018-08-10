@@ -22,10 +22,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/johnrhampton/SnackBar"
+    "url": "git+https://github.com/johnrhampton/js-snackbar"
   },
   "bugs": {
-    "url": "https://github.com/johnrhampton/SnackBar/issues"
+    "url": "https://github.com/johnrhampton/js-snackbar/issues"
   },
   "keywords": [
     "snackbar",
@@ -33,5 +33,5 @@
   ],
   "author": "JRH",
   "license": "MIT",
-  "homepage": "https://github.com/johnrhampton/SnackBar"
+  "homepage": "https://github.com/johnrhampton/js-snackbar"
 }
