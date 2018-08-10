@@ -1,6 +1,8 @@
 {
   "extends": "airbnb",
   "rules": {
+    "prefer-arrow-callback": "off",
+    "prefer-template": "off",
     "react/button-has-type": "off",
     "arrow-parens": ["error", "as-needed"],
     "jsx-a11y/click-events-have-key-events": "off",
@@ -52,6 +54,8 @@
     "componentHandler": true,
     "localStorage": true,
     "fetch": true,
-    "Blob": true
+    "Blob": true,
+    "Event": true,
+    "getComputedStyle": true
   }
 }
