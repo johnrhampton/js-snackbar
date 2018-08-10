@@ -63,8 +63,9 @@ function App() {
             data-pos="top-right"
             data-action-type={ACTION_TYPE.TEXT}
             data-action-text="OK"
+            data-pause-on-hover
             className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
-            Top Right
+            Top Right / Pause on hover
           </button>
         </div>
       </div>
