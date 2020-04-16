@@ -6,8 +6,6 @@ node_modules/
 .vscode/
 
 # local
-src/
-public/
-.eslintrc
+snackbar-examples/
 .gitignore
 snackbar.scss
